@@ -40,11 +40,16 @@ class Articles extends Component {
         .catch(err => {
             if(err) {
                 this.setState({
-                    errorMessage: 'An error has occurred. ' + err
+                    errorMessage: 'An error has occurred. ' + err,
+                    loaded: true
                 })
             }
         })
 
+    }
+
+    handleDelete = (e) => {
+        console.log(e);
     }
 
     render() {
@@ -58,7 +63,7 @@ class Articles extends Component {
                         <div className="post card darken-1" >
                             <h5>{article.title}</h5>
                             <p>{article.article}</p>
-                            <button className="btn"> + Comment</button>
+                            <button className="btn" onClick={this.handleDelete}>Delete</button>
                         </div>
                     </div>
                     )
@@ -72,7 +77,9 @@ class Articles extends Component {
         return (
             <div>
                 <h4 className="center">Articles</h4>
-                <button className="btn"> + New Article</button>
+                <NavLink to="/new_article">
+                    <button className="btn"> + New Article</button>
+                </NavLink>
                 <p> {this.state.errorMessage} </p>
                 {articles}
             </div>            

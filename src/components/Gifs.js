@@ -24,15 +24,23 @@ class Gifs extends Component {
         })
         .then(resp => resp.json())
         .then(data => {
-            this.setState({
-                gifs : data.result,
-                loaded: true
-            })
+            if(data.status === 200) {
+                this.setState({
+                    gifs : data.result,
+                    loaded: true
+                })
+            } else { 
+                this.setState({
+                    errorMessage : 'No Gif found',
+                    loaded: true
+                })
+            }
         })
         .catch(err => {
             if(err) {
                 this.setState({
-                    errorMessage: 'Something went wrong. ' + err
+                    errorMessage: 'Something went wrong. ' + err,
+                    loaded: true
                 })
             }
         })
@@ -63,6 +71,7 @@ class Gifs extends Component {
                 <NavLink to="/new_gif"> 
                     <button className="btn"> + Add a new Gif</button>
                 </NavLink>
+                <p> {this.state.errorMessage}</p>
                 {gifs}                
             </div>            
         )

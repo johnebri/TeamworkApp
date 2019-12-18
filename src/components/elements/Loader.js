@@ -5,8 +5,9 @@ class Loader extends Component {
         return (
             <div className="row">
                     <br /><br /><br />
-                  <div class="progress">
-                    <div class="indeterminate"></div>
+                  <h6 className="center">Please wait . . .</h6>
+                  <div className="progress">
+                    <div className="indeterminate"></div>
                 </div>
           </div>
         )
